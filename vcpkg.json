@@ -1,0 +1,8 @@
+{
+  "name" : "core-engine",
+  "version" : "1.0",
+  "dependencies" : [ "glfw3", "glm", "opengl", "stb", {
+    "name" : "glad",
+    "version>=" : "0.1.36"
+  } ]
+}
