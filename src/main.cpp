@@ -12,16 +12,10 @@ const char* vertexShaderSource = "#version 330 core\n"
     "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
     "}\0";
 
-
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+void processInput(const Window& window)
 {
-    glViewport(0, 0, width, height);
-}
-
-void processInput(const Window* window)
-{
-    if (window->getKey(GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        window->setShouldClose(true);
+    if (window.getKey(GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        window.setShouldClose(true);
 }
 
 int main()
@@ -47,7 +41,7 @@ int main()
     while (!window.shouldClose())
     {
         // Input
-        processInput(&window);
+        processInput(window);
 
         // Rendering commands here
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);

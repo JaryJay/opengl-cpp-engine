@@ -61,7 +61,7 @@ void Window::setShouldClose(const bool close) const
     glfwSetWindowShouldClose(_window, close);
 }
 
-void Window::changeWindowMode(WindowMode new_window_mode)
+void Window::changeWindowMode(const WindowMode new_window_mode)
 {
     if (_current_mode == new_window_mode) return;
 
