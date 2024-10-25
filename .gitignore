@@ -1,12 +1,46 @@
+# Ignore build directories
+/build/
+/cmake-build-*/
+
+# CMake specific files
 CMakeLists.txt.user
-CMakeCache.txt
-CMakeFiles
 CMakeScripts
 Testing
-Makefile
-cmake_install.cmake
-install_manifest.txt
 compile_commands.json
-CTestTestfile.cmake
 _deps
 CMakeUserPresets.json
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+CTestTestfile.cmake
+install_manifest.txt
+*.dir/
+
+# CLion specific files
+.idea/
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/vcs.xml
+.idea/**/modules.xml
+.idea/**/dictionaries/
+.idea/**/shelf/
+.idea/**/vcs/
+.idea/**/cmake_generated/
+*.iml
+
+# vcpkg specific files
+vcpkg_installed/
+vcpkg/buildtrees/
+vcpkg/packages/
+vcpkg/installed/vcpkg/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.swp
+*.DS_Store
+*.pyc
+*.pyo
+*~
