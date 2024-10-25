@@ -13,7 +13,8 @@ find_package(OpenGL REQUIRED COMPONENTS OpenGL)
 # Since STB is a header-only library, it doesn't need to be included in this file.
 
 # Add executable
-add_executable(test main.cpp)
+file(GLOB_RECURSE SOURCE_FILES src/*.cpp)
+add_executable(test ${SOURCE_FILES})
 
 # Link libraries to the test executable
 target_link_libraries(test PRIVATE
