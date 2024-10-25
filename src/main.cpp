@@ -3,13 +3,14 @@
 #include <iostream>
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
+#include "window.h"
 
 const char* vertexShaderSource = "#version 330 core\n"
-"layout (location = 0) in vec3 aPos;\n"
-"void main()\n"
-"{\n"
-"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-"}\0";
+    "layout (location = 0) in vec3 aPos;\n"
+    "void main()\n"
+    "{\n"
+    "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+    "}\0";
 
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -17,27 +18,21 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     glViewport(0, 0, width, height);
 }
 
-void processInput(GLFWwindow* window)
+void processInput(const Window* window)
 {
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, true);
+    if (window->getKey(GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        window->setShouldClose(true);
 }
 
-int main() {
+int main()
+{
     glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
-    GLFWwindow* window = glfwCreateWindow(800, 600, "My Window Name", nullptr, nullptr);
-    if (window == nullptr)
-    {
-        std::cout << "Failed to create GLFW window" << std::endl;
-        glfwTerminate();
+    Window window{};
+    if (!window.create(800, 600, "My Window", true, false))
         return -1;
-    }
-    glfwMakeContextCurrent(window);
+
+    window.makeCurrent();
 
     // initialize GLAD before we call any OpenGL function
     if (!gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress)))
@@ -47,21 +42,19 @@ int main() {
     }
 
     glViewport(0, 0, 800, 600);
-    // Set viewport size every time window is resized
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
     // Render loop
-    while (!glfwWindowShouldClose(window))
+    while (!window.shouldClose())
     {
         // Input
-        processInput(window);
+        processInput(&window);
 
         // Rendering commands here
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         // Check and call events and swap buffers
-        glfwSwapBuffers(window);
+        window.swapBuffers();
         glfwPollEvents();
     }
 
