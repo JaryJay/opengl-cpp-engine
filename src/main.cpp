@@ -2,7 +2,9 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
+#include "QuadMesh.h"
 #include "ShaderProgram.h"
+#include "Texture2D.h"
 #include "Window.h"
 
 void processInput(const Window& window)
@@ -29,7 +31,9 @@ int main()
     glViewport(0, 0, 800, 600);
 
     // Create texture shader
-    ShaderProgram shaderProgram("shaders/textureVertexShader.glsl", "shaders/textureFragmentShader.glsl");
+    const ShaderProgram shaderProgram("shaders/textureVertexShader.glsl", "shaders/textureFragmentShader.glsl");
+    const Texture2D texture("assets/math 239 a-5-4 b.jpg");
+    const QuadMesh quadMesh{};
 
     // Render loop
     while (!window.shouldClose())
@@ -40,6 +44,11 @@ int main()
         // Rendering commands here
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
+
+        quadMesh.bind();
+        shaderProgram.use();
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+        shaderProgram.setTexture("texture1", texture.id, 0);
 
         // Check and call events and swap buffers
         window.swapBuffers();

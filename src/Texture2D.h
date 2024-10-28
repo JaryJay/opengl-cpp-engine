@@ -6,14 +6,13 @@
 class Texture2D
 {
 public:
-    bool load(const std::string& filepath, bool generateMipmaps = true);
+    explicit Texture2D(const std::string& filepath, bool generateMipmaps = true);
     void bind(int unit = 0) const;
 
-    Texture2D() = default;
     ~Texture2D() = default;
+    unsigned int id{};
 
 private:
-    int width;
-    int height;
-    unsigned int id;
+    int width{};
+    int height{};
 };

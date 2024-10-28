@@ -5,7 +5,7 @@
 #include <stb_image.h>
 #include <glad/glad.h>
 
-bool Texture2D::load(const std::string& filepath, const bool generateMipmaps)
+Texture2D::Texture2D(const std::string& filepath, const bool generateMipmaps)
 {
     int nrChannels;
     unsigned char* data = stbi_load(filepath.c_str(), &width, &height, &nrChannels, 0);
@@ -14,7 +14,6 @@ bool Texture2D::load(const std::string& filepath, const bool generateMipmaps)
         auto failureReason = stbi_failure_reason();
         std::cout << std::format("ERROR: Could not load file at '{}' because: {}", filepath, failureReason) <<
             std::endl;
-        return false;
     }
     glGenTextures(1, &id);
     glBindTexture(GL_TEXTURE_2D, id);
@@ -28,8 +27,6 @@ bool Texture2D::load(const std::string& filepath, const bool generateMipmaps)
     if (generateMipmaps)
         glGenerateMipmap(GL_TEXTURE_2D);
     stbi_image_free(data);
-
-    return true;
 }
 
 void Texture2D::bind(const int unit) const
