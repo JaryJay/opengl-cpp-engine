@@ -19,6 +19,8 @@ add_executable(test
         src/window.h
         src/Texture2D.cpp
         src/Texture2D.h
+        src/ShaderProgram.cpp
+        src/ShaderProgram.h
 )
 
 # Link libraries to the test executable
