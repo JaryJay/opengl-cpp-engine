@@ -47,8 +47,8 @@ int main()
 
         quadMesh.bind();
         shaderProgram.use();
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
         shaderProgram.setTexture("texture1", texture.id, 0);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
         // Check and call events and swap buffers
         window.swapBuffers();
