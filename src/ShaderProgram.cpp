@@ -79,6 +79,11 @@ void ShaderProgram::setFloat(const std::string& name, const float value) const
     glUniform1f(glGetUniformLocation(id, name.c_str()), value);
 }
 
+void ShaderProgram::setVec4(const std::string& name, glm::vec4& value) const
+{
+    glUniform4f(glGetUniformLocation(id, name.c_str()), value.x, value.y, value.z, value.w);
+}
+
 void ShaderProgram::setTexture(const std::string& name, const unsigned int texture, const int unit) const
 {
     glActiveTexture(GL_TEXTURE0 + unit);
