@@ -31,3 +31,9 @@ bool Texture2D::load(const std::string& filepath, const bool generateMipmaps)
 
     return true;
 }
+
+void Texture2D::bind(const int unit) const
+{
+    glActiveTexture(GL_TEXTURE0 + unit);
+    glBindTexture(GL_TEXTURE_2D, id);
+}
