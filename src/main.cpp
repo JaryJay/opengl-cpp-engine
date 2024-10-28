@@ -15,9 +15,7 @@ int main()
 {
     glfwInit();
 
-    Window window{};
-    if (!window.create(800, 600, "My Window", true, false))
-        return -1;
+    const Window window(800, 600, "My Window");
 
     window.makeCurrent();
 

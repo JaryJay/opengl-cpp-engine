@@ -6,20 +6,15 @@ void setFramebufferSizeCallback(GLFWwindow* window, const int width, const int h
     glViewport(0, 0, width, height);
 }
 
-bool Window::create(const int width, const int height, const char* title, const bool resizable, const bool fullscreen)
+Window::Window(const int width, const int height, const char* title, const bool resizable, const WindowMode mode):
+    _width(width), _height(height), _current_mode(mode)
 {
-    if (_created)
-    {
-        std::cout << "ERROR: Cannot create window because it has already been created." << std::endl;
-        return false;
-    }
-
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
-    if (fullscreen)
+    if (mode == FULLSCREEN)
     {
         _window = glfwCreateWindow(width, height, title, glfwGetPrimaryMonitor(), nullptr);
     }
@@ -31,14 +26,10 @@ bool Window::create(const int width, const int height, const char* title, const 
     {
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
-        return false;
     }
 
     if (resizable)
         glfwSetFramebufferSizeCallback(_window, setFramebufferSizeCallback);
-
-    _created = true;
-    return true;
 }
 
 void Window::makeCurrent() const
@@ -66,7 +57,7 @@ void Window::changeWindowMode(const WindowMode new_window_mode)
     if (_current_mode == new_window_mode) return;
 
 
-    std::cout << "Not yet implemented. Sorry!" << std::endl;
+    std::cout << "changeWindowMode not yet implemented. Sorry!" << std::endl;
     return;
 
     // switch (new_window_mode)

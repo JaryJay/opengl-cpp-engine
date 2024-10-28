@@ -11,11 +11,11 @@ enum WindowMode
 class Window
 {
 public:
-    bool create(int width,
-                int height,
-                const char* title,
-                bool resizable,
-                bool fullscreen = false);
+    Window(int width,
+           int height,
+           const char* title,
+           bool resizable = true,
+           WindowMode mode = WINDOWED);
     void makeCurrent() const;
     void getSize(int* width, int* height) const;
     [[nodiscard]] bool shouldClose() const;
@@ -24,12 +24,10 @@ public:
     [[nodiscard]] int getKey(int key) const;
     void swapBuffers() const;
 
-    Window() = default;
     ~Window() = default;
 
 private:
     GLFWwindow* _window;
-    bool _created;
     int _width;
     int _height;
     WindowMode _current_mode;
