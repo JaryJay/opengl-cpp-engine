@@ -1,4 +1,4 @@
-#include "window.h"
+#include "Window.h"
 #include <iostream>
 
 void setFramebufferSizeCallback(GLFWwindow* window, const int width, const int height)
