@@ -1,14 +1,9 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
-#include "Window.h"
 
-const char* vertexShaderSource = "#version 330 core\n"
-    "layout (location = 0) in vec3 aPos;\n"
-    "void main()\n"
-    "{\n"
-    "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-    "}\0";
+#include "ShaderProgram.h"
+#include "Window.h"
 
 void processInput(const Window& window)
 {
@@ -34,6 +29,9 @@ int main()
     }
 
     glViewport(0, 0, 800, 600);
+
+    // Create texture shader
+    ShaderProgram shaderProgram("shaders/textureVertexShader.glsl", "shaders/textureFragmentShader.glsl");
 
     // Render loop
     while (!window.shouldClose())

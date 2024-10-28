@@ -82,6 +82,10 @@ void Window::changeWindowMode(const WindowMode new_window_mode)
     _current_mode = new_window_mode;
 }
 
+/**
+ * @param key the key to check
+ * @return Returns either GLFW_PRESS or GLFW_RELEASE
+ */
 int Window::getKey(const int key) const
 {
     return glfwGetKey(_window, key);
