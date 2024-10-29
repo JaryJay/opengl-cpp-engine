@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-
+#include <glm/vec2.hpp>
 
 class Texture2D
 {
@@ -11,6 +11,7 @@ public:
 
     ~Texture2D() = default;
     unsigned int id{};
+    [[nodiscard]] glm::ivec2 getSize() const;
 
 private:
     int width{};
