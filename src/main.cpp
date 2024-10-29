@@ -3,9 +3,12 @@
 #include <iostream>
 
 #include "QuadMesh.h"
+#include "Renderer.h"
 #include "ShaderProgram.h"
 #include "Texture2D.h"
 #include "Window.h"
+
+#include <glm/gtc/matrix_transform.hpp>
 
 void processInput(const Window& window)
 {
@@ -32,8 +35,9 @@ int main()
 
     // Create texture shader
     const ShaderProgram shaderProgram("shaders/textureVertexShader.glsl", "shaders/textureFragmentShader.glsl");
-    const Texture2D texture("assets/math 239 a-5-4 b.jpg");
     const QuadMesh quadMesh{};
+    const Renderer renderer(shaderProgram, quadMesh, window);
+    const Texture2D texture("assets/math 239 a-5-4 b.jpg");
 
     // Render loop
     while (!window.shouldClose())
@@ -45,10 +49,7 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        quadMesh.bind();
-        shaderProgram.use();
-        shaderProgram.setTexture("texture1", texture.id, 0);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+        renderer.drawTexture(texture, glm::vec2{400, 300}, glm::vec2{100, 100});
 
         // Check and call events and swap buffers
         window.swapBuffers();

@@ -1,6 +1,9 @@
 #pragma once
 #include <string>
 #include <glm/vec4.hpp>
+#include <glm/ext/matrix_float4x4.hpp>
+
+#include "Texture2D.h"
 
 class ShaderProgram
 {
@@ -13,7 +16,8 @@ public:
     void setInt(const std::string& name, int value) const;
     void setFloat(const std::string& name, float value) const;
     void setVec4(const std::string& name, glm::vec4& value) const;
-    void setTexture(const std::string& name, unsigned int texture, int unit) const;
+    void setTexture(const std::string& name, const Texture2D& texture, int unit) const;
+    void setMat4(const std::string& name, glm::mat4 mat) const;
 
 private:
     unsigned int id;

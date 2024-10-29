@@ -84,11 +84,15 @@ void ShaderProgram::setVec4(const std::string& name, glm::vec4& value) const
     glUniform4f(glGetUniformLocation(id, name.c_str()), value.x, value.y, value.z, value.w);
 }
 
-void ShaderProgram::setTexture(const std::string& name, const unsigned int texture, const int unit) const
+void ShaderProgram::setTexture(const std::string& name, const Texture2D& texture, const int unit) const
 {
-    glActiveTexture(GL_TEXTURE0 + unit);
-    glBindTexture(GL_TEXTURE_2D, texture);
+    texture.bind(unit);
     glUniform1i(glGetUniformLocation(id, name.c_str()), unit);
+}
+
+void ShaderProgram::setMat4(const std::string& name, glm::mat4 mat) const
+{
+    glUniformMatrix4fv(glGetUniformLocation(id, name.c_str()), 1, GL_FALSE, &mat[0][0]);
 }
 
 /**
