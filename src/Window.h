@@ -1,5 +1,6 @@
 #pragma once
 #include <GLFW/glfw3.h>
+#include <glm/vec2.hpp>
 
 enum WindowMode
 {
@@ -17,7 +18,7 @@ public:
            bool resizable = true,
            WindowMode mode = WINDOWED);
     void makeCurrent() const;
-    void getSize(int* width, int* height) const;
+    [[nodiscard]] glm::ivec2 getSize() const;
     [[nodiscard]] bool shouldClose() const;
     void setShouldClose(bool close) const;
     void changeWindowMode(WindowMode new_window_mode);

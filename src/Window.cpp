@@ -37,9 +37,11 @@ void Window::makeCurrent() const
     glfwMakeContextCurrent(_window);
 }
 
-void Window::getSize(int* width, int* height) const
+glm::ivec2 Window::getSize() const
 {
-    glfwGetWindowSize(_window, width, height);
+    int width, height;
+    glfwGetFramebufferSize(_window, &width, &height);
+    return {width, height};
 }
 
 bool Window::shouldClose() const
