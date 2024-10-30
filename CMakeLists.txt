@@ -14,8 +14,7 @@ find_package(OpenGL REQUIRED COMPONENTS OpenGL)
 # Since STB is a header-only library, it doesn't need to be included in this file.
 
 # Add executable
-add_executable(opengl-cpp-engine
-        src/main.cpp
+add_library(opengl-cpp-engine STATIC
         src/window.cpp
         src/window.h
         src/Texture2D.cpp
@@ -37,17 +36,10 @@ add_custom_command(
         ${CMAKE_SOURCE_DIR}/src/shaders
         ${CMAKE_CURRENT_BINARY_DIR}/shaders)
 
-# Copy assets to the build directory
-add_custom_command(
-        TARGET opengl-cpp-engine POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-        ${CMAKE_SOURCE_DIR}/assets
-        ${CMAKE_CURRENT_BINARY_DIR}/assets)
-
 # Link libraries to the test executable
-target_link_libraries(opengl-cpp-engine PRIVATE
-        glad::glad
-        glfw
-        glm::glm-header-only
-        OpenGL::GL
+target_link_libraries(opengl-cpp-engine
+        PRIVATE glad::glad
+        PRIVATE glfw
+        PRIVATE glm::glm-header-only
+        PRIVATE OpenGL::GL
 )
