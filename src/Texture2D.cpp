@@ -37,6 +37,5 @@ void Texture2D::bind(const int unit) const
 
 glm::ivec2 Texture2D::getSize() const
 {
-    std::cout << width << " " << height << std::endl;
     return {width, height};
 }

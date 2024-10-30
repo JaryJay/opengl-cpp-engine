@@ -10,6 +10,7 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
+
 void processInput(const Window& window)
 {
     if (window.getKey(GLFW_KEY_ESCAPE) == GLFW_PRESS)
@@ -19,8 +20,9 @@ void processInput(const Window& window)
 int main()
 {
     glfwInit();
-
-    const Window window(800, 600, "My Window");
+    constexpr int windowWidth = 1400;
+    constexpr int windowHeight = 900;
+    const Window window(windowWidth, windowHeight, "My Window");
 
     window.makeCurrent();
 
@@ -31,13 +33,16 @@ int main()
         return -1;
     }
 
-    glViewport(0, 0, 800, 600);
+    glViewport(0, 0, windowWidth, windowHeight);
 
     // Create texture shader
     const ShaderProgram shaderProgram("shaders/textureVertexShader.glsl", "shaders/textureFragmentShader.glsl");
     const QuadMesh quadMesh{};
     const Renderer renderer(shaderProgram, quadMesh, window);
     const Texture2D texture("assets/math 239 a-5-4 b.jpg");
+
+    const Texture2DRegion r1(texture, glm::vec2(0,100), glm::vec2(200, 300));
+    const Texture2DRegion r2(texture, glm::vec2(200,300), glm::vec2(400, 800));
 
     // Render loop
     while (!window.shouldClose())
@@ -49,7 +54,8 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        renderer.drawTexture(texture, glm::vec2{400, 300}, glm::vec2{100, 100});
+        renderer.drawTextureRegion(r1, glm::vec2(200, 200), glm::vec2(200, 300));
+        renderer.drawTextureRegion(r2, glm::vec2(400, 500), glm::vec2(200, 500));
 
         // Check and call events and swap buffers
         window.swapBuffers();
@@ -59,3 +65,4 @@ int main()
     glfwTerminate();
     return 0;
 }
+

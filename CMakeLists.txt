@@ -26,6 +26,8 @@ add_executable(opengl-cpp-engine
         src/QuadMesh.h
         src/Renderer.cpp
         src/Renderer.h
+        src/Texture2DRegion.cpp
+        src/Texture2DRegion.h
 )
 
 # Copy shaders to the build directory
