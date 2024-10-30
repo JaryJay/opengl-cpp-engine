@@ -50,3 +50,9 @@ void Renderer::drawTextureRegion(const Texture2DRegion& texRegion, const glm::ve
     quadMesh.bind();
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }
+
+void Renderer::drawTextureRegion(const Texture2DRegion& texRegion, const glm::vec2& pos, const float scale,
+                                 const bool centered) const
+{
+    drawTextureRegion(texRegion, pos, (texRegion.bottomRight - texRegion.topLeft) * scale, centered);
+}
