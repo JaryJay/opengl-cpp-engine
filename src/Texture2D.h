@@ -6,7 +6,7 @@
 class Texture2D
 {
 public:
-    explicit Texture2D(const std::string& filepath, bool generateMipmaps = true);
+    explicit Texture2D(const std::string& filepath, bool transparency = true);
     void bind(int unit = 0) const;
 
     ~Texture2D() = default;
