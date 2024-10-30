@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.29)
 
+string(REPLACE "\\" "/" VCPKG_ROOT "$ENV{VCPKG_ROOT}")
+
 # Set the vcpkg toolchain file and C++ standard
-#set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
+set(CMAKE_TOOLCHAIN_FILE "${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
 set(CMAKE_CXX_STANDARD 20)
 
 project(opengl-cpp-engine)
@@ -36,3 +38,4 @@ target_link_libraries(opengl-cpp-engine
         PRIVATE glm::glm-header-only
         PRIVATE OpenGL::GL
 )
+target_include_directories(opengl-cpp-engine PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
