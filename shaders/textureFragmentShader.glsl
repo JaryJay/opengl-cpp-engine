@@ -8,6 +8,7 @@ uniform vec2 regionBottomRight = vec2(1.0);
 
 void main()
 {
-    vec2 samplePoint = mix(regionTopLeft, regionBottomRight, TexCoord);
-    gl_FragColor = texture(texture1, samplePoint) * modulate;
+    float sampleX = mix(regionTopLeft.x, regionBottomRight.x, TexCoord.x);
+    float sampleY = mix(regionTopLeft.y, regionBottomRight.y, 1 - TexCoord.y);
+    gl_FragColor = texture(texture1, vec2(sampleX, sampleY)) * modulate;
 }
