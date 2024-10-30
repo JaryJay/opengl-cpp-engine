@@ -1,5 +1,5 @@
-# repo-for-understanding-cpp-because-this-thing-is-so-fricken-confusing
+# opengl-cpp-engine
 
-This repo is a playground for me to wallow in negative thoughts (about C++).
+A small 2D OpenGL graphics engine. Written in C++, one of the programming languages of all time.
 
 Uses vcpkg (in manifest mode) and CMake.
