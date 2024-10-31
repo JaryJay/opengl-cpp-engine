@@ -59,6 +59,11 @@ ShaderProgram::ShaderProgram(const std::string& vertexShaderPath, const std::str
     glDeleteShader(fragment);
 }
 
+ShaderProgram::~ShaderProgram()
+{
+    glDeleteProgram(id);
+}
+
 void ShaderProgram::use() const
 {
     glUseProgram(id);

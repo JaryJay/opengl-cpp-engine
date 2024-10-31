@@ -36,6 +36,11 @@ QuadMesh::QuadMesh()
     glEnableVertexAttribArray(1);
 }
 
+QuadMesh::~QuadMesh()
+{
+    glDeleteVertexArrays(1, &vao);
+}
+
 void QuadMesh::bind() const
 {
     glBindVertexArray(vao);

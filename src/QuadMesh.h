@@ -4,7 +4,7 @@ class QuadMesh
 {
 public:
     QuadMesh();
-    ~QuadMesh() = default;
+    ~QuadMesh();
 
     void bind() const;
 

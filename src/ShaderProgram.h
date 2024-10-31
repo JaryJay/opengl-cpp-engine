@@ -9,7 +9,7 @@ class ShaderProgram
 {
 public:
     ShaderProgram(const std::string& vertexShaderPath, const std::string& fragmentShaderPath);
-    ~ShaderProgram() = default;
+    ~ShaderProgram();
     void use() const;
 
     void setBool(const std::string& name, bool value) const;
